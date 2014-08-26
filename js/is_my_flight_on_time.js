@@ -68,9 +68,9 @@ $(document).ready(function() {
   var flight_detail_template  = _.template($('#flight_detail_template').html());
 
   // Full screen first section
-  $('#first').css('height', $(window).height());
+  $('#search-section').css('height', $(window).height());
   $(window).on('resize', function() {
-    $('#first').css('height', $(window).height());
+    $('#search-section').css('height', $(window).height());
   });
 
   $(function() {

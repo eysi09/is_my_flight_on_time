@@ -16,10 +16,6 @@ body {
   color: #67727a;
 }
 
-input {
-  min-width: 97px;
-}
-
 a {
   overflow: hidden;
   text-overflow: ellipsis; 
@@ -27,12 +23,12 @@ a {
 }
 
 .row:not(.search-bar) {
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 /* Sections */
 
-#first {
+#search-section {
   background-color: #f5f5f5;
   height: auto;
   margin: 0 auto;
@@ -41,7 +37,7 @@ a {
   width: 100%;
 }
 
-#second {
+#all-flights-section {
   background-color: #fff;
   height: auto;
   margin: 0 auto;
@@ -59,7 +55,7 @@ a {
   text-align: center;
 }
 
-.highlighted {
+.header-highlight {
   color: #ff7148;
   font-style: italic;
 }
@@ -89,18 +85,43 @@ a {
 
 /* Search bar */
 
+input {
+  background-color: #f5f5f5 !important;
+  border: 0 !important;
+  border-bottom: 1px solid #ff7148 !important;
+  color: #fff;
+  font-size: .95rem !important;
+  min-width: 97px;
+  padding: 6px !important;
+}
+
 .form-group {
   margin: 0;
+}
+
+.form-control,
+.form-control:focus {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  border-bottom: 1px solid #ff7148;
+  border-radius: 0;
 }
 
 /* Flights dropdown list */
 
 .flights {
-  max-height: 280px;
+  max-height: 295px;
   overflow-y: auto;
   width: 100%;
 }
 
 .active {
   background-color: #f5f5f5;
+}
+
+/* Response Message */
+
+.normal-highlight {
+  color: #ff7148;
 }
