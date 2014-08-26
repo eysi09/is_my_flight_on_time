@@ -1,26 +1,23 @@
 /* Hack for responsive tables in moz */
-@-moz-document url-prefix() 
-{
-  fieldset
-  {
+@-moz-document url-prefix() {
+  fieldset {
     display: table-cell;
   }
 }
 
-input
-{
+/* General */
+
+input {
   min-width: 97px;
 }
 
-a
-{
+a {
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis; 
+  white-space: nowrap;
 }
 
-.row
-{
+.row {
   margin-bottom: 8px;
 }
 
@@ -49,41 +46,34 @@ a
 .main-header {
   margin: 0 0 30px 0;
   text-align: center;
-  margin-bottom: 30px;
 }
 
-.btn
-{
+/* Search mode buttons */
+
+.btn {
   width: 97px;
 }
 
-.btn:focus
-{
-  outline: none;
+.btn:focus {
   background-color: #428bca;
   border-color: #357ebd;
+  outline: none;
 }
 
-.btn-primary:hover
-{
+.btn-primary:hover {
   background-color: #3071a9;
   border-color: #285e8e;
 }
 
-.form-group
-{
-  margin-bottom: 1px;
-}
+/* Flights dropdown list */
 
-.flights
-{
-  width: 100%;
+.flights {
   max-height: 280px;
   overflow-y: auto;
+  width: 100%;
 }
 
-.active
-{
+.active {
   background-color: #f5f5f5;
 }
 
