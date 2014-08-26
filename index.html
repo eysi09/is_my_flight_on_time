@@ -16,45 +16,57 @@
     <![endif]-->
   </head>
   <body>
-    <div class="container">
-      <div class="row>">
-        <div class="col-md-12">
-          <h2 class="main-header">Well is it?</h2>
+    <section id="first" data-speed="6" data-type="background">
+      <div class="container">
+        <div class="row>">
+          <div class="col-md-12">
+            <h1 class="main-header">IS MY FUCKING FLIGHT ON TIME?</h1>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <button type="button" class="btn btn-primary" data-id="arrivals">Arrivals</button>
-          <button type="button" class="btn btn-default" data-id="departures">Departures</button>
+        <div class="row">
+          <div class="col-md-4">
+            <button type="button" class="btn btn-primary" data-id="arrivals">Arrivals</button>
+            <button type="button" class="btn btn-default" data-id="departures">Departures</button>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <form role="form">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Loading data..." disabled>
+        <div class="row">
+          <div class="col-md-12">
+            <form role="form">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Loading data..." disabled>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row flightslist"></div>
+        <div class="row response-msg" style="display:none;"></div>
+        <div class="row flight-detail" style="display:none;"></div>
+        <div class="row alert-type-1" style="display:none;">
+          <div class="col-md-12">
+            <div class="alert alert-danger" role="alert">
+              <strong>Oh snap!</strong> Can't load flights at the moment. Try refreshing.
             </div>
-          </form>
+          </div>
         </div>
-      </div>
-      <div class="row flightslist"></div>
-      <div class="row response-msg" style="display:none;"></div>
-      <div class="row flight-detail" style="display:none;"></div>
-      <div class="row alert-type-1" style="display:none;">
-        <div class="col-md-12">
-          <div class="alert alert-danger" role="alert">
-            <strong>Oh snap!</strong> Can't load flights at the moment. Try refreshing.
+        <div class="row alert-type-2" style="display:none;">
+          <div class="col-md-12">
+            <div class="alert alert-danger" role="alert">
+              <strong>Damn son.</strong> Couldn't find your flight.
+            </div>
           </div>
         </div>
       </div>
-      <div class="row alert-type-2" style="display:none;">
-        <div class="col-md-12">
-          <div class="alert alert-danger" role="alert">
-            <strong>Damn son.</strong> Couldn't find your flight.
+    </section>
+    <section id="second" data-speed="4" data-type="background">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="big-box">
+            </div>
           </div>
         </div>
-      </div> 
-    </div>
+      </div>
+    </section>
 
     <script type="text/template" id="flightslist_template">
       <div class="col-md-12">

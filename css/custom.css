@@ -24,8 +24,30 @@ a
   margin-bottom: 8px;
 }
 
-.main-header
-{
+/* Sections */
+
+#first {
+  background-color: grey;
+  height: auto;
+  margin: 0 auto;
+  padding: 100px 0;
+  position: relative;
+  width: 100%;
+}
+
+#second {
+  background-color: #fff;
+  height: auto;
+  margin: 0 auto;
+  padding: 100px 0;
+  position: relative;
+  width: 100%;
+}
+
+/* Header */
+
+.main-header {
+  margin: 0 0 30px 0;
   text-align: center;
   margin-bottom: 30px;
 }
