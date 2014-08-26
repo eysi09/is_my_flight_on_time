@@ -67,6 +67,12 @@ $(document).ready(function() {
   var response_msg_template   = _.template($('#response_msg_template').html());
   var flight_detail_template  = _.template($('#flight_detail_template').html());
 
+  // Full screen first section
+  $('#first').css('height', $(window).height());
+  $(window).on('resize', function() {
+    $('#first').css('height', $(window).height());
+  });
+
   $(function() {
     load();
   });
@@ -209,8 +215,8 @@ $(document).ready(function() {
   function toggle_search_mode(e) {
     search_mode = $(e.target).data('id');
     $input.attr('placeholder', strings.placeholder[search_mode]);
-    $('button').removeClass('btn-primary').addClass('btn-default');
-    $(e.target).addClass('btn-primary');
+    $('button').removeClass('btn-active').addClass('btn-unactive');
+    $(e.target).addClass('btn-active');
     reset_search();
   }
 
