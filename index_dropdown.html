@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Is My Keflav&iacute;k Flight on Time?</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="row>">
+        <div class="col-md-12">
+          <h2 class="main-header">Well is it?</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+              <span class="btn-name">Arrivals</span>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a data-id="arrivals" href="#">Arrivals</a></li>
+              <li><a data-id="departures" href="#">Departures</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <form role="form">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Enter flight number, airline, airport of origin or time" disabled>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="dropdown"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="response_msg"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive flight_detail"></div>
+        </div>
+      </div>
+    </div>
+
+
+    <script type="text/template" id="dropdown_template">
+      <ul class="dropdown-menu flights custom-dd" role="menu">
+        <% _.each(list, function(i) { %>
+          <% var val = i.flightNumber + ' ' + i.to + ' - ' + i.airline + key + i.from %>
+          <li><a class="option" data-id="<%= i.flightNumber %>" href="#"><%= val %></a></li>
+        <% }); %>
+      </ul>
+    </script>
+    <script type="text/template" id="response_msg_template">
+      <h2><%= reaction %> Your flight <%= direction %> <%= airport %> is <%= status1 %> <%= delay %> <%= status2 %></h2>
+    </script>
+    <script type="text/template" id="flight_detail_template">
+      <h2>Here's the lowdown:</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th><%= direction.charAt(0).toUpperCase() + direction.slice(1)%></th>
+            <th>Airline</th>
+            <th>Planned Arrival</th>
+            <th>Real Arrival<th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= flight_number %></td>
+            <td><%= airport %></td>
+            <td><%= airline %></td>
+            <td><%= planned %></td>
+            <td><%= real_full %></td>
+          </tr>
+        </tbody>
+      </table>
+    </script>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.1/moment.min.js"></script>
+    <script src="js/is_my_flight_on_time.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
+

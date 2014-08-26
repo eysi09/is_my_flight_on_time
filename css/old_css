@@ -1,0 +1,66 @@
+p, form, .main-header
+{
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.dropdown-menu
+{
+  text-align: left;
+}
+
+.input-prepend
+{
+  width:  100%;
+}
+
+.or_op
+{
+  margin-bottom: 20px;
+}
+
+.flights-input
+{
+  width: 60%;
+}
+
+.airports-input
+{
+  width: 45%;
+}
+
+.dropdown-toggle
+{
+  width: 110px;
+}
+
+.main-header
+{
+  margin-bottom: 30px;
+}
+
+.boarding_pass
+{
+  height: 400px;
+  background-size: 100% 100%;
+  position: relative;
+  background-image: url('../img/boarding_pass.jpg');
+}
+
+.bp-input
+{
+  background-image: url('../img/boarding_pass_bkg.jpg');
+  width: 236px;
+  height: 14px !important;
+  top: 234px;
+  left: 82px;
+  position: absolute;
+  border-radius: none;
+  border: none !important;
+  font-family: monospace;
+}
+
+.bp-input:focus
+{
+  outline: none;
+}
