@@ -271,14 +271,12 @@ $(document).ready(function() {
       $('.alert-type-1').show();
       $input.prop('disabled', true);
     } else {
-      $('.form-group').addClass('has-error');
       $('.alert-type-2').show();
     }
   }
 
   function remove_alert_modes() {
     $('.alert-type-2').hide();
-    $('.form-group').removeClass('has-error');
   }
 
   function get_context(flight) {
