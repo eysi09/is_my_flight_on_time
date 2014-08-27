@@ -85,12 +85,11 @@
     </script>
     <script type="text/template" id="response_msg_template">
       <div class="col-md-12">
-        <h2><%= reaction %> Your flight <%= direction %> <%= airport %> is <%= status1 %> <span class="normal-highlight"><%= delay %></span> <%= status2 %></h2>
+        <h2><%= reaction %> Your flight <%= direction %> <%= airport %> is <%= status1 %> <span class="normal-highlight"><%= n_hours %></span> <%= str_hours %> <span class="normal-highlight"><%= n_min %></span> <%= str_min %>  <%= status2 %> Here's the lowdown:</h2>
       </div>
     </script>
     <script type="text/template" id="flight_detail_template">
       <div class="col-md-12">
-        <h2>Here's the lowdown:</h2>
         <div class="table-responsive">
           <table class="table">
             <thead>
@@ -98,8 +97,10 @@
                 <th>#</th>
                 <th><%= direction.charAt(0).toUpperCase() + direction.slice(1)%></th>
                 <th>Airline</th>
-                <th>Planned <%= action %></th>
-                <th>Real <%= action %><th>
+                <th>Scheduled <%= action %></th>
+                <th>Estimated <%= action %></th>
+                <th>Status</th>
+                <th>Date</th>
               </tr>
             </thead>
             <tbody>
@@ -107,8 +108,10 @@
                 <td><%= flight_number %></td>
                 <td><%= airport %></td>
                 <td><%= airline %></td>
-                <td><%= planned %></td>
-                <td><%= real_full %></td>
+                <td><%= scheduled %></td>
+                <td><%= estimate %></td>
+                <td><%= flight_status %></td>
+                <td><%= date %></td>
               </tr>
             </tbody>
           </table>

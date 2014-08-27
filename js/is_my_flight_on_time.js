@@ -31,8 +31,8 @@ $(document).ready(function() {
       departures: 'Departures'
     },
     flightslist: {
-      arrivals:   ' - Planned arrival at ',
-      departures: ' - Planned departure at '
+      arrivals:   ' - Arrival at ',
+      departures: ' - Departure at '
     },
     response_msgs: {
       on_time:    on_time_msgs,
@@ -50,9 +50,9 @@ $(document).ready(function() {
       late:     ''
     },
     status2: {
-      on_time:  'on time.',
-      early:    'minutes early.',
-      late:     'minutes late.'
+      on_time:  '',
+      early:    'early.',
+      late:     'late.'
     }
   };
 
@@ -119,11 +119,12 @@ $(document).ready(function() {
     $.when(
 
       $.get(url, departure_params, function(response) {
+        console.log('departures');
         departures = _.sortBy(response.results, function(r) {return r.to});
       }, 'json'),
 
       $.get(url, arrival_params, function(response) {
-        console.log(response.results)
+        console.log('arrivals')
         arrivals = _.sortBy(response.results, function(r) {return r.to});
       }, 'json')
 
@@ -280,35 +281,40 @@ $(document).ready(function() {
   }
 
   function get_context(flight) {
-    var m_planned = moment(flight.plannedArrival, 'HH:mm');
-    if (flight.realArrival) {
-      var m_real = moment(parse_arrival_string(flight.realArrival), 'HH:mm');
-      var diff = m_real.diff(m_planned);
-      var status = diff > 0 ? 'late' : 'early';
-      status = diff === 0 ? 'on_time' : status;
-      var delay  = moment.utc(Math.abs(diff)).format('HH:mm');
-      delay = diff === 0 ? '' : delay;
-    } else {
-      var status = 'on_time';
-      var delay = '';
-    }
+    var scheduled = moment(flight.from + flight.date, ('HH:mmDD. MMM'));
+    var estimate = moment(flight.plannedArrival + flight.date, ('HH:mmDD. MMM'));
+
+    // Messy time calculations and string manipulations
+    var diff = estimate.diff(scheduled);
+    var d = moment.duration(Math.abs(diff));
+    var n_hours = Math.floor(d.asHours());
+    n_hours = parseInt(n_hours) > 0 ? n_hours : '';
+    var str_hours = n_hours ? 'hours' : '';
+    var n_min = moment.utc(diff).format("m");
+    n_min = parseInt(n_min) > 0 ? n_min : '';
+    var str_min = n_min ? 'minutes' : '';
+    var status = diff > 0 ? 'late' : 'early';
+    n_min = diff === 0 ? 'on time' : n_min;
+
+    // This is what counts:
     return {
       reaction:       strings.response_msgs[status][0],
       direction:      strings.direction[search_mode],
       airport:        flight.to,
-      delay:          delay,
+      n_hours:        n_hours,
+      str_hours:      str_hours,
+      n_min:          n_min,
+      str_min:        str_min,
       status1:        strings.status1[status],
       status2:        strings.status2[status],
-      airline:        flight.airline,
-      planned:        flight.plannedArrival,
-      real_full:      flight.realArrival || 'N/A',
       flight_number:  flight.flightNumber,
+      airline:        flight.airline,
+      scheduled:      flight.from,
+      estimate:       flight.plannedArrival,
+      flight_status:  flight.realArrival,
+      date:           flight.date,
       action:         strings.action[search_mode]
     };
-  }
-
-  function parse_arrival_string(str) {
-    return str.substring(str.indexOf(' ') + 1, str.length);
   }
 
   /* Parallax stuff */
