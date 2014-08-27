@@ -142,8 +142,9 @@ $(document).ready(function() {
   // First click renders the value in the input.
   // Second click get's the data. The data is found from the data id
   // of the active class, not the search string itself.
-  // That's why the search returns an error if the search string is changed
-  // since the class will stay the same.
+  // That's why the search returns an error if the search string is changed.
+  // Otherwise a wrong a string would return a response since the class
+  // stays the same.
   function trigger_query() {
     if ($input.val()) {
       // First enter click
@@ -161,17 +162,16 @@ $(document).ready(function() {
   function activate_dropdown() {
     search_string = $input.val().trim().toLowerCase();
     if (search_string.length > 1) {
-      //var val = clean_search_string(search_string);
-      var val = search_string;
+      var val = clean_search_string(search_string);
       var data_set = search_mode === 'arrivals' ? arrivals : departures;
-      // TODO: regexp
       var matches = _.filter(data_set, function(d) {
-        return (
+        var match = (
           d.to.toLowerCase().indexOf(val)           > -1 ||
           d.from.toLowerCase().indexOf(val)         > -1 ||
           d.flightNumber.toLowerCase().indexOf(val) > -1 ||
           d.airline.toLowerCase().indexOf(val)      > -1 ||
           d.date.toLowerCase().indexOf(val)         > -1)
+        return match;
       });
       render_flightslist(matches);
     } else {
@@ -238,12 +238,10 @@ $(document).ready(function() {
     $('.flights').hide();
   }
 
-  //TODO: Change to regular expression
   function clean_search_string(str) {
-    var f = str.indexOf(' - ');
-    var s = str.indexOf(' - ', f+1);
-    var t = str.indexOf('at', s) + 2;
-    return str.substring(0, f) + str.substring(f + 3, s) + str.substring(t, str.length);
+    var remove = ['departure at', 'arrival at', '-', ' '];
+    var regex = new RegExp(remove.join('|'), 'g');
+    return str.toLowerCase().replace(regex, '');
   }
 
   function handle_query() {
