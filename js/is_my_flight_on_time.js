@@ -292,6 +292,7 @@ $(document).ready(function() {
     n_min = parseInt(n_min) > 0 ? n_min : '';
     var str_min = n_min ? 'minutes' : '';
     var status = diff > 0 ? 'late' : 'early';
+    status = diff === 0 ? 'on_time' : status;
     n_min = diff === 0 ? 'on time' : n_min;
 
     // This is what counts:
