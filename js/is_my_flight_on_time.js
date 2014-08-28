@@ -186,7 +186,7 @@ $(document).ready(function() {
         list: matches,
         key:  strings.flightslist[search_mode]
       }
-      $('.flightslist').html(flightslist_template(context));
+      $('#flightslist-wrap').html(flightslist_template(context));
       $('.flights').show();
       bind_option_events()
     } else {
@@ -259,18 +259,18 @@ $(document).ready(function() {
     $('.option').removeClass('active');
     $('.form-group').removeClass('has-error');
     $('.flights').hide();
-    $('.response-msg').html(response_msg_template(context)).show();
-    $('.flight-detail').html(flight_detail_template(context)).show();
+    $('#response-msg-wrap').html(response_msg_template(context)).show();
+    $('#flight-detail-wrap').html(flight_detail_template(context)).show();
   }
 
   function toggle_alert_modes(alert_type) {
-    $('.response-msg').hide();
-    $('.flight-detail').hide();
+    $('#response-msg-wrap').hide();
+    $('#flight-detail-wrap').hide();
     if (alert_type === 'alert_type_1') {
-      $('.alert-type-1').show();
+      $('#alert-type-1-wrap').show();
       $input.prop('disabled', true);
     } else {
-      $('.alert-type-2').show();
+      $('#alert-type-2-wrap').show();
     }
   }
 
