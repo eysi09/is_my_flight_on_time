@@ -28,6 +28,7 @@ var DropdownView = Backbone.View.extend({
         key:  this.strings.flightslist[searchMode]
       }
       this.$el.html(this.flights_list_template(context));
+      this.responseMessageView.reset();
       this.$el.show();
     } else {
       this.$el.hide();

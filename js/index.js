@@ -79,6 +79,7 @@ $(document).ready(function() {
     searchBarView.responseMessageView = responseMessageView;
     dropdownView.buttonView           = buttonView;
     dropdownView.searchBarView        = searchBarView;
+    dropdownView.responseMessageView  = responseMessageView;
     responseMessageView.buttonView    = buttonView;
 
     if (_.isEmpty(response_data.departures) || _.isEmpty(response_data.arrivals)) {
