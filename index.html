@@ -28,36 +28,21 @@
         </div>
         <div class="row" id="buttons-wrap">
           <div class="col-md-4">
-            <button type="button" class="btn btn-active" data-id="arrivals">Arrivals</button>
-            <button type="button" class="btn" data-id="departures">Departures</button>
+            <button type="button" class="btn btn-active" data-id="arrivals" disabled>Arrivals</button>
+            <button type="button" class="btn" data-id="departures" disabled>Departures</button>
           </div>
         </div>
         <div class="row" id="search-bar-wrap">
           <div class="col-md-12">
-            <form role="form">
+            <div>
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="Loading data..." disabled>
               </div>
-            </form>
-          </div>
-        </div>
-        <div class="row" id="flightslist-wrap"></div>
-        <div class="row" id="response-msg-wrap" style="display:none;"></div>
-        <div class="row" id="flight-detail-wrap" style="display:none;"></div>
-        <div class="row" id="alert-type-1-wrap" style="display:none;">
-          <div class="col-md-12">
-            <div class="alert alert-danger" role="alert">
-              <strong>Oh snap!</strong> Can't load flights at the moment. Try refreshing.
             </div>
           </div>
         </div>
-        <div class="row" id="alert-type-2-wrap" style="display:none;">
-          <div class="col-md-12">
-            <div class="alert alert-danger" role="alert">
-              <strong>Damn son.</strong> Couldn't find your flight.
-            </div>
-          </div>
-        </div>
+        <div class="row" id="flights-list-wrap" style="display:none;"></div>
+        <div class="row" id="response-msg-wrap"></div>
       </div>
     </section>
     <section id="all-flights-section" data-speed="4" data-type="background">
@@ -71,24 +56,42 @@
       </div>
     </section>
 
-    <script type="text/template" id="flightslist_template">
+    <script type="text/template" id="flights_list_template">
       <div class="col-md-12">
-        <div class="dropdown">
-          <ul class="dropdown-menu flights" role="menu">
-            <% _.each(list, function(i) { %>
-              <% var val = i.flightNumber + ' ' + i.to + ' - ' + i.airline + key + i.from %>
-              <li><a class="option" data-id="<%= i.flightNumber %>" href="#"><%= val %></a></li>
-            <% }); %>
-          </ul>
+        <div class="table-responsive flights-list-table">
+          <table class="table flights-list">
+            <tbody>
+              <% _.each(list, function(i) { %>
+                <tr class="option" data-id="<%= i.flightNumber %>">
+                  <td><%= i.flightNumber %> </td>
+                  <td><%= i.to %> </td>
+                  <td><%= i.airline %> </td>
+                  <td><%= key + i.from %></td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
         </div>
       </div>
     </script>
-    <script type="text/template" id="response_msg_template">
+    <script type="text/template" id="alert_type_1">
       <div class="col-md-12">
-        <h2><%= reaction %> Your flight <%= direction %> <%= airport %> is <%= status1 %> <span class="normal-highlight"><%= n_hours %></span> <%= str_hours %> <span class="normal-highlight"><%= n_min %></span> <%= str_min %>  <%= status2 %> Here's the lowdown:</h2>
+        <div class="alert alert-danger" role="alert">
+          <strong>Oh snap!</strong> Can't load flights at the moment. Try refreshing.
+        </div>
       </div>
     </script>
-    <script type="text/template" id="flight_detail_template">
+    <script type="text/template" id="alert_type_2">
+      <div class="col-md-12">
+        <div class="alert alert-danger" role="alert">
+          <strong>Damn son.</strong> Couldn't find your flight.
+        </div>
+      </div>
+    </script>
+    <script type="text/template" id="sucess_msg_template">
+      <div class="col-md-12">
+        <h2><%= reaction %> Your flight <%= direction %> <%= airport %> is <%= status1 %> <span class="normal-highlight"><%= nHours %></span> <%= strHours %> <span class="normal-highlight"><%= nMin %></span> <%= strMin %>  <%= status2 %> Here's the lowdown:</h2>
+      </div>
       <div class="col-md-12">
         <div class="table-responsive">
           <table class="table">
@@ -105,12 +108,12 @@
             </thead>
             <tbody>
               <tr>
-                <td><%= flight_number %></td>
+                <td><%= flightNumber %></td>
                 <td><%= airport %></td>
                 <td><%= airline %></td>
                 <td><%= scheduled %></td>
                 <td><%= estimate %></td>
-                <td><%= flight_status %></td>
+                <td><%= flightStatus %></td>
                 <td><%= date %></td>
               </tr>
             </tbody>
@@ -122,7 +125,11 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.1/moment.min.js"></script>
-    <script src="js/is_my_flight_on_time.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/views/buttonview.js"></script>
+    <script src="js/views/searchbarview.js"></script>
+    <script src="js/views/dropdownview.js"></script>
+    <script src="js/views/responsemessageview.js"></script>
     <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
