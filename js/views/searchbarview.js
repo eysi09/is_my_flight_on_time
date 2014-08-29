@@ -63,7 +63,7 @@ var SearchBarView = Backbone.View.extend({
   getSearchMatches: function() {
     this.searchString = this.$input.val();
     //var val = this.cleanSearchString(this.searchString);
-    var val = this.searchString;
+    var val = this.searchString.toLowerCase();
     return _.filter(this.dataSet, function(d) {
       return (
         d.to.toLowerCase().indexOf(val)           > -1 ||
