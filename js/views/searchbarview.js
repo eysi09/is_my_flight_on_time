@@ -24,8 +24,11 @@ var SearchBarView = Backbone.View.extend({
       'navigateUpList',
       'manageOptions',
       'triggerQuery',
+      'selectFlight',
       'handleQuery',
-      'renderResponseMessage')
+      'renderResponseMessage',
+      'toggleDataSet',
+      'reset')
     this.$input  = this.$el.find('input');
     this.searchString = '';
     this.lastSelectedFlight = '';
@@ -76,7 +79,7 @@ var SearchBarView = Backbone.View.extend({
 
   handleKeydown: function(event) {
     switch (event.which) {
-      case 13: //enter
+      case 13: // enter
         this.triggerQuery();
         break;
       case 40: // down
@@ -138,14 +141,18 @@ var SearchBarView = Backbone.View.extend({
     if (this.$input.val()) {
       // First enter click
       if ( $('.flights-list-table').is(':visible') ) {
-        this.lastSelectedFlight = this.$input.val();
-        this.dropdownView.reset();
+        this.selectFlight();
         // Second enter click
       } else {
         if (this.$input.val() === this.lastSelectedFlight) this.handleQuery();
         else this.renderResponseMessage('alert_type_2');
       }
     }
+  },
+
+  selectFlight: function() {
+    this.lastSelectedFlight = this.$input.val();
+    this.dropdownView.reset();
   },
 
   handleQuery: function() {

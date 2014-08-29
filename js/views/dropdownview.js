@@ -36,7 +36,8 @@ var DropdownView = Backbone.View.extend({
   },
 
   selectOption: function(event) {
-    this.searchBarView.manageOptions($(event.target));
+    this.searchBarView.manageOptions($(event.target).parent());
+    this.searchBarView.selectFlight();
   },
 
   reset: function() {
