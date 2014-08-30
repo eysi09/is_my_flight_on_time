@@ -1,8 +1,6 @@
 /* Hack for responsive tables in moz */
 @-moz-document url-prefix() {
-  fieldset {
-    display: table-cell;
-  }
+  fieldset { display: table-cell; }
 }
 
 /* General */
@@ -115,7 +113,7 @@ input {
   border-radius: 4px !important;
   box-shadow: 0 6px 12px rgba(0,0,0,.175) !important;
   -moz-box-shadow: 0 6px 12px rgba(0,0,0,.175) !important;
-  webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175) !important;
+  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175) !important;
   max-height: 295px;
   overflow-y: auto;
   width: 100%;
