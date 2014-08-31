@@ -11,7 +11,6 @@ html {
 
 body {
   font-family: 'Open Sans', sans-serif;
-  color: #67727a;
 }
 
 a {
@@ -31,24 +30,25 @@ a {
   height: auto;
   margin: 0 auto;
   padding: 100px 0;
-  position: relative;
+  position: fixed;
   width: 100%;
+  z-index: 2;
 }
 
 #all-flights-section {
   background-color: #fff;
-  height: auto;
   margin: 0 auto;
   padding: 100px 0;
   position: relative;
   width: 100%;
+  z-index: 10;
 }
 
 /* Header */
 
 .main-header {
   color: #93b1c6;
-  margin: 0 0 30px 0;
+  margin: 0 0 20px 0;
   font-size: 3rem;
   text-align: center;
 }
@@ -60,23 +60,23 @@ a {
 
 /* Search mode buttons */
 
-.btn {
+.btn-toggle {
   background-color: #fff;
   border-color: #c7d0d5;
   width: 97px;
 }
 
-.btn:hover {
+.btn-toggle:hover {
   background-color: #fafafa;
 }
 
-.btn-active,
-.btn-active:hover {
+.btn-toggle-active,
+.btn-toggle-active:hover {
   background-color: #93b1c6;
   color: #fff;
 }
 
-.btn-active:focus {
+.btn-toggle-active:focus {
   outline: none;
   color: #fff;
 }
@@ -136,5 +136,21 @@ input {
 /* Response Message */
 
 .normal-highlight {
+  color: #ff7148;
+}
+
+/* View All Button */
+
+.footer {
+  bottom: 5%;
+  height: 60px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  z-index: 2;
+}
+
+.btn-view-all {
+  background-color: #fff;
   color: #ff7148;
 }

@@ -22,8 +22,8 @@ var ButtonView = Backbone.View.extend({
   toggleSearchMode: function(event) {
     this.searchMode = $(event.target).data('id');
     this.searchBarView.toggleDataSet();
-    $('button').removeClass('btn-active').addClass('btn-unactive');
-    $(event.target).addClass('btn-active');
+    $('button').removeClass('btn-toggle-active').addClass('btn-toggle-unactive');
+    $(event.target).addClass('btn-toggle-active');
     this.resetAll();
   },
 

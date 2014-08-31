@@ -28,8 +28,8 @@
         </div>
         <div class="row" id="buttons-wrap">
           <div class="col-md-4">
-            <button type="button" class="btn btn-active" data-id="arrivals" disabled>Arrivals</button>
-            <button type="button" class="btn" data-id="departures" disabled>Departures</button>
+            <button type="button" class="btn btn-toggle-active btn-toggle" data-id="arrivals" disabled>Arrivals</button>
+            <button type="button" class="btn btn-toggle" data-id="departures" disabled>Departures</button>
           </div>
         </div>
         <div class="row" id="search-bar-wrap">
@@ -43,6 +43,20 @@
         </div>
         <div class="row" id="flights-list-wrap" style="display:none;"></div>
         <div class="row" id="response-msg-wrap"></div>
+      </div>
+    </section>
+    <div class="footer">
+      <div class="container">
+        <button type="button" class="btn btn-default btn-view-all btn-lg">View All Flights</button>
+      </div>
+    </div>
+    <section id="all-flights-section" data-speed="6" data-type="background">
+      <div class="container">
+        <div class="row>">
+          <div class="col-md-12">
+            <div class="flight-diagram"></div>
+          </div>
+        </div>
       </div>
     </section>
 
