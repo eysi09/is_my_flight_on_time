@@ -171,15 +171,44 @@
         <div class="col-md-12 small-table"><%= date %></div>
       </div>
     </script>
+    <script type="text/template" id="tooltip_template">
+      <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>From</th>
+                <th>Airline</th>
+                <th>Scheduled</th>
+                <th>Estimated</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= flightNumber %></td>
+                <td><%= to %></td>
+                <td><%= airline %></td>
+                <td><%= from %></td>
+                <td><%= plannedArrival %></td>
+                <td><%= realArrival %></td>
+                <td><%= date %></td>
+              </tr>
+            </tbody>
+          </table>
+    </script>
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.1/moment.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
     <script src="js/index.js"></script>
     <script src="js/views/buttonview.js"></script>
     <script src="js/views/searchbarview.js"></script>
     <script src="js/views/dropdownview.js"></script>
     <script src="js/views/responsemessageview.js"></script>
+    <script src="js/views/allflightsview.js"></script>
     <script src="js/bootstrap.min.js"></script>
   </body>
 </html>

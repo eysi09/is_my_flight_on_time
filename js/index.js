@@ -25,13 +25,13 @@ $(document).ready(function() {
   $.when(
 
     $.get(url, departureParams, function(response) {
-      console.log('departures');
-      response_data.departures = _.sortBy(response.results, function(r) {return r.to});
+      console.log(response.results);
+      response_data.departures = _.sortBy(response.results, 'to');
     }, 'json'),
 
     $.get(url, arrivalParams, function(response) {
       console.log('arrivals')
-      response_data.arrivals = _.sortBy(response.results, function(r) {return r.to});
+      response_data.arrivals = _.sortBy(response.results, 'to');
     }, 'json')
 
   ).then(function() {
@@ -52,6 +52,10 @@ $(document).ready(function() {
       el: $('#response-msg-wrap')
     });
 
+    var allFlightsView = new AllFlightsView({
+      el: $('#all-flights-section')
+    });
+
     buttonView.searchBarView          = searchBarView;
     buttonView.dropdownView           = dropdownView;
     buttonView.responseMessageView    = responseMessageView;
@@ -67,7 +71,9 @@ $(document).ready(function() {
        responseMessageView.mode = 'alert_type_1';
        responseMessageView.render();
     } else {
-      searchBarView.load(response_data);
+      _.each([searchBarView, allFlightsView], function(view) {
+        view.load(response_data);
+      });
     }
   });
 
