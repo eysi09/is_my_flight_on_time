@@ -129,10 +129,6 @@ input {
   background-color: #f5f5f5;
 }
 
-.option:hover {
-  background-color: #f5f5f5 !important;
-}
-
 /* Response Message */
 
 .normal-highlight {

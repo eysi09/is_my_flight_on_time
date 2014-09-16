@@ -1,7 +1,8 @@
 var DropdownView = Backbone.View.extend({
 
   events: {
-    'click .option' : 'selectOption'
+    'mouseover .option'  : 'manageOptions',
+    'click .option'     : 'selectOption'
   },
 
   strings: {
@@ -14,6 +15,7 @@ var DropdownView = Backbone.View.extend({
   initialize: function() {
     _.bindAll(this,
       'render',
+      'manageOptions',
       'selectOption',
       'reset')
     this.flights_list_template = _.template($('#flights_list_template').html());
@@ -35,9 +37,14 @@ var DropdownView = Backbone.View.extend({
     }
   },
 
+  manageOptions: function(event) {
+    this.searchBarView.manageOptions($(event.target).parent());
+  },
+
   selectOption: function(event) {
     this.searchBarView.manageOptions($(event.target).parent());
-    this.searchBarView.selectFlight();
+    this.reset();
+    this.searchBarView.handleQuery();
   },
 
   reset: function() {

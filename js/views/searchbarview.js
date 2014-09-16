@@ -31,7 +31,6 @@ var SearchBarView = Backbone.View.extend({
       'reset')
     this.$input  = this.$el.find('input');
     this.searchString = '';
-    this.lastSelectedFlight = '';
     this.dataSet = [];
   },
 
@@ -129,23 +128,13 @@ var SearchBarView = Backbone.View.extend({
     return str.toLowerCase().replace(regex, '');
   },
 
-  // NB: The search functionality is a little gimmick-y
-  // to conform to the user's expectations. 
-  // First click renders the value in the input.
-  // Second click get's the data. The data is found from the data id
-  // of the active class, not the search string itself.
-  // That's why the search returns an error if the search string is changed.
-  // Otherwise a wrong a string would return a response since the class
-  // stays the same.
   triggerQuery: function() {
     if (this.$input.val()) {
-      // First enter click
       if ( $('.flights-list-table').is(':visible') ) {
-        this.selectFlight();
-        // Second enter click
+        this.dropdownView.reset();
+        this.handleQuery();
       } else {
-        if (this.$input.val() === this.lastSelectedFlight) this.handleQuery();
-        else this.renderResponseMessage('alert_type_2');
+        this.renderResponseMessage('alert_type_2');
       }
     }
   },
