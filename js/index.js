@@ -52,8 +52,12 @@ $(document).ready(function() {
       el: $('#response-msg-wrap')
     });
 
-    var allFlightsView = new AllFlightsView({
-      el: $('#all-flights-section')
+    var allArrivalsView = new AllFlightsView({
+      kind: 'arrivals'
+    });
+
+    var allDeparturesView = new AllFlightsView({
+      kind: 'departures'
     });
 
     buttonView.searchBarView          = searchBarView;
@@ -71,7 +75,7 @@ $(document).ready(function() {
        responseMessageView.mode = 'alert_type_1';
        responseMessageView.render();
     } else {
-      _.each([searchBarView, allFlightsView], function(view) {
+      _.each([searchBarView, allArrivalsView, allDeparturesView], function(view) {
         view.load(response_data);
       });
     }

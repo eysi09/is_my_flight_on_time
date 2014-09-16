@@ -169,12 +169,13 @@ input {
 
 .node circle {
   fill: #fff;
-  stroke: steelblue;
+  stroke: #93b1c6;
   stroke-width: 1.5px;
 }
 
 .node {
-  font: 11px sans-serif;
+  font: 12px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .link {
