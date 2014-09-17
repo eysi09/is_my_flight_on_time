@@ -129,13 +129,9 @@ var SearchBarView = Backbone.View.extend({
   },
 
   triggerQuery: function() {
-    if (this.$input.val()) {
-      if ( $('.flights-list-table').is(':visible') ) {
-        this.dropdownView.reset();
-        this.handleQuery();
-      } else {
-        this.renderResponseMessage('alert_type_2');
-      }
+    if (this.$input.val() && $('.flights-list-table').is(':visible')) {
+      this.dropdownView.reset();
+      this.handleQuery();
     }
   },
 
