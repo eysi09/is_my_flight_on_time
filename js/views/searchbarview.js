@@ -94,28 +94,27 @@ var SearchBarView = Backbone.View.extend({
     if ( $('.flights-list-table').is(':visible') ) {
       if ($('.active').length === 0) { // First option
         var nextOpt = $('.option:first');
-        this.manageOptions(nextOpt);
+        this.manageOptions(nextOpt, true);
       } else {
         var nextOpt = $('.active').next();
-        this.manageOptions(nextOpt);
+        this.manageOptions(nextOpt, true);
       }
     }
   },
 
   navigateUpList: function() {
     var nextOpt = $('.active').prev();
-    this.manageOptions(nextOpt);
+    this.manageOptions(nextOpt, true);
     var input_length = this.$input.val().length;
   },
 
   // If there's no next option the user
   // re-enters the input with the inital value
-  manageOptions: function (opt) {
+  manageOptions: function (opt, scrollIntoView) {
     $('.option').removeClass('active');
     if (opt.length > 0) {
       opt.addClass('active');
-      // TODO: Re-think.
-      opt[0].scrollIntoView(false);
+      if (scrollIntoView) opt[0].scrollIntoView(false);
     }
     var val = opt.find('td').text() || this.searchString;
     this.$input.val(val);
@@ -147,7 +146,7 @@ var SearchBarView = Backbone.View.extend({
       this.renderResponseMessage('success');
       $('.option').removeClass('active');
     } else {
-      renderResponseMessage('alert_type_2');
+      this.renderResponseMessage('alert_type_2');
     }
   },
 

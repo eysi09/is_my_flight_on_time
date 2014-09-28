@@ -38,11 +38,11 @@ var DropdownView = Backbone.View.extend({
   },
 
   manageOptions: function(event) {
-    this.searchBarView.manageOptions($(event.target).parent());
+    this.searchBarView.manageOptions($(event.target).parent(), false);
   },
 
   selectOption: function(event) {
-    this.searchBarView.manageOptions($(event.target).parent());
+    this.searchBarView.manageOptions($(event.target).parent()), false;
     this.reset();
     this.searchBarView.handleQuery();
   },
