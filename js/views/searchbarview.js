@@ -23,6 +23,8 @@ var SearchBarView = Backbone.View.extend({
       'navigateDownList',
       'navigateUpList',
       'manageOptions',
+      'formatSearchString',
+      'isNotSubString',
       'triggerQuery',
       'selectFlight',
       'handleQuery',
@@ -64,16 +66,20 @@ var SearchBarView = Backbone.View.extend({
 
   getSearchMatches: function() {
     this.searchString = this.$input.val();
-    //var val = this.cleanSearchString(this.searchString);
-    var val = this.searchString.toLowerCase();
+    var searchStrs = this.formatSearchString(this.searchString);
     return _.filter(this.dataSet, function(d) {
-      return (
-        d.to.toLowerCase().indexOf(val)           > -1 ||
-        d.from.toLowerCase().indexOf(val)         > -1 ||
-        d.flightNumber.toLowerCase().indexOf(val) > -1 ||
-        d.airline.toLowerCase().indexOf(val)      > -1 ||
-        d.date.toLowerCase().indexOf(val)         > -1)
-    });
+      // omits data object if there exists a string in the array
+      // of whitespace seperated search strings such that that
+      // string is not a substring of any string in the data object.
+      return !_.some(searchStrs, function(s) {
+        var v = this;
+        return  v.isNotSubString(d.to, s)            &&
+                v.isNotSubString(d.from, s)          &&
+                v.isNotSubString(d.flightNumber, s)  &&
+                v.isNotSubString(d.airline, s)       &&
+                v.isNotSubString(d.date, s)
+      }, this);
+    }, this);
   },
 
   handleKeydown: function(event) {
@@ -81,11 +87,11 @@ var SearchBarView = Backbone.View.extend({
       case 13: // enter
         this.triggerQuery();
         break;
-      case 40: // down
-        this.navigateDownList();
-        break;
       case 38: // up
         this.navigateUpList();
+        break;
+      case 40: // down
+        this.navigateDownList();
         break;
     }
   },
@@ -103,6 +109,7 @@ var SearchBarView = Backbone.View.extend({
   },
 
   navigateUpList: function() {
+    event.preventDefault(); // Prevent caret from moving
     var nextOpt = $('.active').prev();
     this.manageOptions(nextOpt, true);
     var input_length = this.$input.val().length;
@@ -121,10 +128,12 @@ var SearchBarView = Backbone.View.extend({
     this.$input.focus();
   },
 
-  cleanSearchString: function(str) {
-    var remove = ['departure at', 'arrival at', '-', ' '];
-    var regex = new RegExp(remove.join('|'), 'g');
-    return str.toLowerCase().replace(regex, '');
+  formatSearchString: function(str) {
+    return str.toLowerCase().split(' ');
+  },
+
+  isNotSubString: function(str, subStr) {
+    return str.toLowerCase().indexOf(subStr) == -1;
   },
 
   triggerQuery: function() {
