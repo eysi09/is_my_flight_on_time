@@ -17,7 +17,7 @@
     <![endif]-->
   </head>
   <body>
-    <section id="search-section" data-speed="6" data-type="background">
+    <section id="search-section">
       <div class="container">
         <div class="row>">
           <div class="col-md-12">
@@ -43,20 +43,6 @@
         </div>
         <div class="row" id="flights-list-wrap" style="display:none;"></div>
         <div class="row" id="response-msg-wrap"></div>
-      </div>
-    </section>
-    <div class="footer">
-      <div class="container">
-        <button type="button" class="btn btn-default btn-view-all btn-lg">View All Flights</button>
-      </div>
-    </div>
-    <section id="all-flights-section" data-speed="6" data-type="background">
-      <div class="container">
-        <div class="row>">
-          <div class="col-md-12">
-            <div class="flight-diagram"></div>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -94,35 +80,95 @@
     </script>
     <script type="text/template" id="sucess_msg_template">
       <div class="col-md-12">
-        <h2><%= reaction %> Your flight <%= direction %> <%= airport %> is <%= status1 %> <span class="normal-highlight"><%= nHours %></span> <%= strHours %> <span class="normal-highlight"><%= nMin %></span> <%= strMin %>  <%= status2 %> Here's the lowdown:</h2>
+        <h2><%= context.reaction %> Your flight <%= context.direction %> <%= context.airport %> is <%= context.status1 %> <span class="normal-highlight"><%= context.nHours %></span> <%= context.strHours %> <span class="normal-highlight"><%= context.nMin %></span> <%= context.strMin %>  <%= context.status2 %> Here's the lowdown:</h2>
       </div>
-      <div class="col-md-12">
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th><%= direction.charAt(0).toUpperCase() + direction.slice(1)%></th>
-                <th>Airline</th>
-                <th>Scheduled <%= action %></th>
-                <th>Estimated <%= action %></th>
-                <th>Status</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><%= flightNumber %></td>
-                <td><%= airport %></td>
-                <td><%= airline %></td>
-                <td><%= scheduled %></td>
-                <td><%= estimate %></td>
-                <td><%= flightStatus %></td>
-                <td><%= date %></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <%= context.tableTemplate(context) %>
+    </script>
+    <script type="text/template" id="response_table_lg">
+      <div class="col-md-12 table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th><%= direction.charAt(0).toUpperCase() + direction.slice(1)%></th>
+              <th>Airline</th>
+              <th>Scheduled <%= action %></th>
+              <th>Estimated <%= action %></th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= flightNumber %></td>
+              <td><%= airport %></td>
+              <td><%= airline %></td>
+              <td><%= scheduled %></td>
+              <td><%= estimate %></td>
+              <td><%= flightStatus %></td>
+              <td><%= date %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </script>
+    <script type="text/template" id="response_table_md">
+      <div class="col-md-12 table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th colspan="2">Flight data</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>#</strong></td>
+              <td><%= flightNumber %></td>
+            </tr>
+            <tr>
+              <td><strong><%= direction.charAt(0).toUpperCase() + direction.slice(1)%></strong></td>
+              <td><%= airport %></td>
+            </tr>
+            <tr>
+              <td><strong>Airline</strong></td>
+              <td><%= airline %></td>
+            </tr>
+            <tr>
+              <td><strong>Scheduled <%= action %></strong></td>
+              <td><%= scheduled %></td>
+            </tr>
+            <tr>
+              <td><strong>Estimated <%= action %></strong></td>
+              <td><%= estimate %></td>
+            </tr>
+            <tr>
+              <td><strong>Status</strong></td>
+              <td><%= flightStatus %></td>
+            </tr>
+            <tr>
+              <td><strong>Date</strong></td>
+              <td><%= date %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </script>
+    <script type="text/template" id="response_table_sm">
+      <div class="col-md-12 table-wrap">
+        <div class="col-md-12 small-table"><strong>#</strong></div>
+        <div class="col-md-12 small-table"><%= flightNumber %></div>
+        <div class="col-md-12 small-table"><strong><%= direction.charAt(0).toUpperCase() + direction.slice(1)%></strong></div>
+        <div class="col-md-12 small-table"><%= airport %></div>
+        <div class="col-md-12 small-table"><strong>Airline</strong></div>
+        <div class="col-md-12 small-table"><%= airline %></div>
+        <div class="col-md-12 small-table"><strong>Scheduled <%= action %></strong></div>
+        <div class="col-md-12 small-table"><%= scheduled %></div>
+        <div class="col-md-12 small-table"><strong>Estimated <%= action %></strong></div>
+        <div class="col-md-12 small-table"><%= estimate %></div>
+        <div class="col-md-12 small-table"><strong>Status</strong></div>
+        <div class="col-md-12 small-table"><%= flightStatus %></div>
+        <div class="col-md-12 small-table"><strong>Date</strong></div>
+        <div class="col-md-12 small-table"><%= date %></div>
       </div>
     </script>
     <script src="http://code.jquery.com/jquery.js"></script>

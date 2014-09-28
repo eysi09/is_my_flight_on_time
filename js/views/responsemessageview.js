@@ -49,12 +49,20 @@ var ResponseMessageView = Backbone.View.extend({
     _.bindAll(this,
       'render',
       'getContext',
+      'getTableTemplate',
+      'resizeTable',
       'reset')
     this.success_msg_template   = _.template($('#sucess_msg_template').html());
     this.alert_type_1_template  = _.template($('#alert_type_1').html());
     this.alert_type_2_template  = _.template($('#alert_type_2').html());
+    this.response_tables = {
+      large:  _.template($('#response_table_lg').html()),
+      medium: _.template($('#response_table_md').html()),
+      small:  _.template($('#response_table_sm').html()),
+    };
     this.flight;
     this.mode = 'default';
+    $(window).on('resize', this.resizeTable);
   },
 
   render: function() {
@@ -63,8 +71,8 @@ var ResponseMessageView = Backbone.View.extend({
         this.$el.html('');
         break;
       case 'success':
-        var context = this.getContext();
-        this.$el.html(this.success_msg_template(context));
+        var context = _.extend(this.getContext(), {tableTemplate: this.getTableTemplate()});
+        this.$el.html(this.success_msg_template({context: context}));
         break;
       case 'alert_type_1':
         this.$el.html(this.alert_type_1_template());
@@ -113,6 +121,29 @@ var ResponseMessageView = Backbone.View.extend({
       date:           flight.date,
       action:         this.strings.action[searchMode]
     };
+  },
+
+  getTableTemplate: function() {
+    var width = $(window).width();
+    if (width < 580 && width > 340) {
+      return this.response_tables.medium;
+    } else if (width <= 340) {
+      return this.response_tables.small;
+    } else {
+      return this.response_tables.large;
+    }
+  },
+
+  resizeTable: function() {
+    if ((tableWrap = this.$el.find('.table-wrap')).length > 0) {
+      var this_view = this;
+      tableWrap.html(this.getTableTemplate()(this_view.getContext()));
+    }
+  },
+
+  remove: function() {
+    $(window).off('resize', this.resizeTable);
+    Backbone.View.prototype.remove.apply(this);
   },
 
   reset: function() {

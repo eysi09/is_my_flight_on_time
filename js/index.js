@@ -3,18 +3,6 @@ $(document).ready(function() {
   // Full screen first section and position second.
   var height = $(window).height();
   $('#search-section').css('height', height);
-  $('#all-flights-section').css({
-      height: height,
-      top:    height
-    });
-  $(window).on('resize', function() {
-    height = $(window).height();
-    $('#search-section').css('height', height);
-    $('#all-flights-section').css({
-      height: height,
-      top:    height
-    });
-  });
 
   $('.btn-view-all').click(function() {
     $('#all-flights-section')[0].scrollIntoView(true);
