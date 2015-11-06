@@ -3,21 +3,21 @@ var AllFlightsView = Backbone.View.extend({
   initialize: function(options) {
     _.bindAll(this,
       'load',
-      'initialize_tree',
+      'initializeTree',
       'render',
       'y_transform',
       'toggle',
-      'prepare_data')
+      'prepareData')
     this.tooltip_template = _.template($('#tooltip_template').html());
     this.kind = options.kind;
   },
 
   load: function(response) {
-    this.root = this.prepare_data(response[this.kind]);
-    this.initialize_tree();
+    this.root = this.prepareData(response[this.kind]);
+    this.initializeTree();
   },
 
-  initialize_tree: function() {
+  initializeTree: function() {
     var this_view = this;
     var m = [20, 120, 20, 120], h = 800 - m[0] - m[2];
     this.w = 600 - m[1] - m[3];
@@ -175,7 +175,7 @@ var AllFlightsView = Backbone.View.extend({
     }
   },
 
-  prepare_data: function(data) {
+  prepareData: function(data) {
     var key = this.kind === 'arrivals' ? 'Arrivals' : 'Departures';
     var return_hash = {'name': key, 'children': []};
     var airlines = _.keys(_.indexBy(data, 'airline'));
